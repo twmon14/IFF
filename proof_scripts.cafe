@@ -1,0 +1,212 @@
+open IFF .
+	:goal{
+		eq [iff :nonexec] : inv2(F:Field,K:Key,R:Rand) = true .
+		eq [iff1 :nonexec] : inv1(F:Field,A:Agent,A1:Agent,A0:Agent,K:Key,R:Rand) = true .
+	}
+
+  eq [lm1 :nonexec] : lm1(C:Cipher, C':Cipher, CS:ColCiphers) = true .
+
+	:ind on (F:Field)
+
+	:apply(si)
+
+-- fkcm1
+	:apply(tc)
+	:def csb1 = :ctf [R#Rand \in rands(nw(F#Field)) .]
+	:apply(csb1)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+  
+  -- inv2
+	:def csb2 = :ctf [R#Rand \in rands(nw(F#Field)) .]
+	:apply(csb2)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+
+-- fkcm2
+	:apply(tc)
+	:def csb3 = :ctf [C#Cipher \in ciphers(nw(F#Field)) .]
+	:apply(csb3)
+	:def csb4 = :ctf {eq A@Agent  = enemy .}
+	:apply(csb4)
+	:def csb5 = :ctf {eq A#Agent  = A1@Agent .}
+	:apply(csb5)
+	:def csb6 = :ctf {eq A0#Agent  = A0@Agent .}
+	:apply(csb6)
+	:def csb7 = :ctf {eq k(C#Cipher) = K@Key .}
+	:apply(csb7)
+	:def csb8 = :ctf {eq r(C#Cipher) = R@Rand .}
+	:apply(csb8)
+	:def csb9 = :ctf {eq p(C#Cipher) = A1@Agent .}
+	:apply(csb9)
+	:def csb10 = :ctf {eq K@Key  = k(enemy) .}
+	:apply(csb10)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:def csb11 = :ctf {eq A1@Agent  = enemy .}
+	:apply(csb11)
+	:def csb12 = :ctf [enc(K@Key,R@Rand,enemy) \in ciphers(nw(F#Field)) .]
+	:apply(csb12)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [lm1] by {C:Cipher <- C#Cipher ; C':Cipher <- enc(K@Key,R@Rand,enemy) ; CS:ColCiphers <- ciphers(nw(F#Field)) ;}
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+
+  -- inv2
+	:def csb13 = :ctf [C#Cipher \in ciphers(nw(F#Field)) .]
+	:apply(csb13)
+	:def csb14 = :ctf {eq k(C#Cipher) = K@Key .}
+	:apply(csb14)
+	:def csb15 = :ctf {eq r(C#Cipher) = R@Rand .}
+	:apply(csb15)
+	:def csb16 = :ctf {eq p(C#Cipher) = enemy .}
+	:apply(csb16)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [lm1] by {C:Cipher <- C#Cipher ; C':Cipher <- enc(K@Key,R@Rand,enemy) ; CS:ColCiphers <- ciphers(nw(F#Field)) ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+  :imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+
+-- fkrm2
+	:apply(tc)
+	:def csb20 = :ctf [R#Rand \in rands(nw(F#Field)) .]
+	:apply(csb20)
+	:def csb21 = :ctf {eq A1@Agent  = enemy .}
+	:apply(csb21)
+	:def csb22 = :ctf {eq k(enemy) = K@Key .}
+	:apply(csb22)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:def csb23 = :ctf [R#Rand \in rands(nw(F#Field)) .]
+	:apply(csb23)
+	:def csb24 = :ctf {eq k(enemy) = K@Key .}
+	:apply(csb24)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+
+-- init
+	:apply(tc)
+	:apply (rd)
+	:apply (rd)
+	
+-- 
+  :apply(tc)
+	:def csb25 = :ctf [R#Rand \in ur(F#Field) .]
+	:apply(csb25)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:def csb26 = :ctf [R#Rand \in ur(F#Field) .]
+	:apply(csb26)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+
+-- 
+	:apply(tc)
+	:def csb27 = :ctf [cm?(M#Msg) .]
+	:apply(csb27)
+	:def csb28 = :ctf [M#Msg \in nw(F#Field) .]
+	:apply(csb28)
+	:def csb29 = :ctf {eq A#Agent  = dst(M#Msg).}
+	:apply(csb29)
+	:def csb30 = :ctf {eq A@Agent  = dst(M#Msg).}
+	:apply(csb30)
+	:def csb31 = :ctf {eq A0@Agent  = src(M#Msg).}
+	:apply(csb31)
+	:def csb32 = :ctf {eq K@Key  = k(dst(M#Msg)).}
+	:apply(csb32)
+	:def csb33 = :ctf {eq R@Rand  = r(M#Msg).}
+	:apply(csb33)
+	:def csb34 = :ctf {eq A1@Agent  = dst(M#Msg).}
+	:apply(csb34)
+	:def csb35 = :ctf {eq dst(M#Msg) = enemy .}
+	:apply(csb35)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff1] by {A0:Agent <- A0@Agent ; A1:Agent <- A1@Agent ; A:Agent <- A@Agent ; K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:def csb36 = :ctf [cm?(M#Msg) .]
+	:apply(csb36)
+	:def csb37 = :ctf [M#Msg \in nw(F#Field) .]
+	:apply(csb37)
+	:def csb38 = :ctf {eq A#Agent  = dst(M#Msg).}
+	:apply(csb38)
+	:def csb39 = :ctf {eq K@Key  = k(dst(M#Msg)).}
+	:apply(csb39)
+	:def csb40 = :ctf {eq R@Rand  = r(M#Msg).}
+	:apply(csb40)
+	:def csb41 = :ctf {eq dst(M#Msg) = enemy .}
+	:apply(csb41)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:apply (rd)
+
+close
