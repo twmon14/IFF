@@ -1,7 +1,7 @@
 --> I) Base case
 --> init
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -14,7 +14,7 @@ close
 --> II) Induction cases
 --> 1. fkcm1(s,r1,r2,r3)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -29,7 +29,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -45,7 +45,7 @@ close
 
 --> 2. fkrm1(s,r1,r2,r3)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -68,7 +68,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -95,7 +95,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -122,7 +122,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -146,7 +146,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -167,7 +167,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -187,7 +187,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -206,7 +206,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -224,7 +224,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -241,7 +241,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -257,7 +257,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -273,7 +273,7 @@ close
 
 --> 3. fkrm2(s,r1,r2,r3)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -290,7 +290,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -307,7 +307,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -323,7 +323,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -339,7 +339,7 @@ close
 
 --> 4. sdcm(s,r1,r2,r3)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -354,7 +354,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -370,7 +370,7 @@ close
 
 --> 5. sdrm(s,r1,r2,r3)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -394,7 +394,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -418,7 +418,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -440,7 +440,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -461,7 +461,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -481,7 +481,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -500,7 +500,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -518,7 +518,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -534,7 +534,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -549,7 +549,7 @@ open IFF .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a1 : -> Prin .
 	op a2 : -> Prin .
 	op a3 : -> Prin .
@@ -563,5 +563,5 @@ open IFF .
 close
 
 open IFF .
-  :proof(inv1)
+  :proof(iff)
 close
