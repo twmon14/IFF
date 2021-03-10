@@ -1,0 +1,181 @@
+open IFF .
+	:goal{
+		eq [inv2 :nonexec] : inv2(S:Sys,K:Key,R:Rand) = true .
+	}
+
+	:ind on (S:Sys)
+
+	:apply(si)
+-- fkcm1
+	:apply(tc)
+
+	:def csb1 = :ctf [R#Rand \in rands(nw(S#Sys)) .]
+
+	:apply(csb1)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+-- fkrm1
+	:apply(tc)
+
+	:def csb2 = :ctf [C#Cipher \in ciphers(nw(S#Sys)) .]
+
+	:apply(csb2)
+
+	:def csb3 = :ctf {eq k(C#Cipher) = K@Key .}
+
+	:apply(csb3)
+
+	:def csb4 = :ctf {eq r(C#Cipher) = R@Rand .}
+
+	:apply(csb4)
+
+	:def csb5 = :ctf {eq p(C#Cipher) = enemy .}
+
+	:apply(csb5)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:postpone .
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:def csb6 = :ctf {eq k(C#Cipher) = K@Key .}
+
+	:apply(csb6)
+
+	:def csb7 = :ctf {eq r(C#Cipher) = R@Rand .}
+
+	:apply(csb7)
+
+	:def csb8 = :ctf {eq p(C#Cipher) = enemy .}
+
+	:apply(csb8)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+-- fkrm2
+	:apply(tc)
+
+	:def csb9 = :ctf [R#Rand \in rands(nw(S#Sys)) .]
+
+	:apply(csb9)
+
+	:def csb10 = :ctf {eq k(enemy) = K@Key .}
+
+	:apply(csb10)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+-- init
+	:apply(tc)
+
+	:apply (rd)
+-- sdcm
+	:apply(tc)
+
+	:def csb11 = :ctf [R#Rand \in ur(S#Sys) .]
+
+	:apply(csb11)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+-- sdrm
+	:apply(tc)
+
+	:def csb12 = :ctf [cm?(M#Msg) .]
+
+	:apply(csb12)
+
+	:def csb13 = :ctf [M#Msg \in nw(S#Sys) .]
+
+	:apply(csb13)
+
+	:def csb14 = :ctf {eq P#Prin  = dst(M#Msg).}
+
+	:apply(csb14)
+
+	:def csb15 = :ctf {eq K@Key  = k(dst(M#Msg)).}
+
+	:apply(csb15)
+
+	:def csb16 = :ctf {eq R@Rand  = r(M#Msg).}
+
+	:apply(csb16)
+
+	:def csb17 = :ctf {eq dst(M#Msg) = enemy .}
+
+	:apply(csb17)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+
+	:apply (rd)
+
+
+close
