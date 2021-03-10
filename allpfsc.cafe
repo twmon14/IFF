@@ -1,7 +1,8 @@
 open IFF .
 	:goal{
-		eq [inv1 :nonexec] : inv1(S:Sys,P:Prin,P1:Prin,P0:Prin,K:Key,R:Rand) = true .
-        eq [inv2 :nonexec] : inv2(S:Sys,K:Key,R:Rand) = true .
+        eq [iff :nonexec] : inv2(S:Sys,K:Key,R:Rand) = true .
+		eq [iff1 :nonexec] : inv1(S:Sys,P:Prin,P1:Prin,P0:Prin,K:Key,R:Rand) = true .
+
 	}
 
     eq [lm1 :nonexec] : lm1(C:Cipher, C':Cipher, CS:ColCiphers) = true .
@@ -19,11 +20,11 @@ open IFF .
 
 	:apply(csb1)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
     -- inv2
@@ -33,11 +34,11 @@ open IFF .
 
 	:apply(csb2)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 -- fkrm1
@@ -77,7 +78,7 @@ open IFF .
 
 	:apply(csb10)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
@@ -89,47 +90,47 @@ open IFF .
 
 	:apply(csb12)
 
-    :imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+    :imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
     :imp [lm1] by {C:Cipher <- C#Cipher ; C':Cipher <- enc(K@Key,R@Rand,enemy) ; CS:ColCiphers <- ciphers(nw(S#Sys)) ;}
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
     -- inv2
@@ -151,19 +152,19 @@ open IFF .
 
     :imp [lm1] by {C:Cipher <- C#Cipher ; C':Cipher <- enc(K@Key,R@Rand,enemy) ; CS:ColCiphers <- ciphers(nw(S#Sys)) ;}
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
@@ -179,19 +180,19 @@ open IFF .
 
 	:apply(csb19)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 -- fkrm2
@@ -209,19 +210,19 @@ open IFF .
 
 	:apply(csb22)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
     -- inv2
@@ -233,15 +234,15 @@ open IFF .
 
 	:apply(csb24)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 -- init
@@ -258,11 +259,11 @@ open IFF .
 
 	:apply(csb25)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
     -- inv2
@@ -270,11 +271,11 @@ open IFF .
 
 	:apply(csb26)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 -- sdrm
@@ -316,43 +317,43 @@ open IFF .
 
 	:apply(csb35)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
+	:imp [iff1] by {K:Key <- K@Key ; P0:Prin <- P0@Prin ; P1:Prin <- P1@Prin ; P:Prin <- P@Prin ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
     -- inv2
@@ -380,31 +381,31 @@ open IFF .
 
 	:apply(csb41)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
-	:imp [inv2] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
+	:imp [iff] by {K:Key <- K@Key ; R:Rand <- R@Rand ;}
 
 	:apply (rd)
 
