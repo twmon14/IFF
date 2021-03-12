@@ -59,10 +59,7 @@ open IFF .
   	eq a1 = enemy .
   	eq r1 = a2 .
   	eq r2 = a3 .
-  	eq k(r3) = k .
-  	eq r(r3) = r .
-  	eq p(r3) = a2 .
-
+	eq r3 = enc(k,r,a2) .
   	eq k = k(enemy) .
   	red inv1(s,a1,a2,a3,k,r) implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
 close
@@ -82,16 +79,12 @@ open IFF .
   	eq a1 = enemy .
   	eq r1 = a2 .
   	eq r2 = a3 .
-  	eq k(r3) = k .
-  	eq r(r3) = r .
-  	eq p(r3) = a2 .
-
+	eq r3 = enc(k,r,a2) .
   	eq (k = k(enemy)) = false .
-  	eq a2 = enemy .
+	eq a2 = enemy .
   	eq enc(k,r,enemy) \in ciphers(nw(s)) = true .
   	red inv2(s,k,r)
-    implies inv1(s,a1,a2,a3,k,r)
-    implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
+    implies inv1(s,a1,a2,a3,k,r) implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
 open IFF .
@@ -109,10 +102,7 @@ open IFF .
   	eq a1 = enemy .
   	eq r1 = a2 .
   	eq r2 = a3 .
-  	eq k(r3) = k .
-  	eq r(r3) = r .
-  	eq p(r3) = a2 .
-
+  	eq r3 = enc(k,r,a2) .
   	eq (k = k(enemy)) = false .
   	eq a2 = enemy .
   	eq enc(k,r,enemy) \in ciphers(nw(s)) = false .
@@ -136,15 +126,13 @@ open IFF .
   	eq a1 = enemy .
   	eq r1 = a2 .
   	eq r2 = a3 .
-  	eq k(r3) = k .
-  	eq r(r3) = r .
-  	eq p(r3) = a2 .
-
+	eq r3 = enc(k,r,a2) .
   	eq (k = k(enemy)) = false .
   	eq (a2 = enemy) = false .
   	red inv1(s,a1,a2,a3,k,r) implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
+-- long term
 open IFF .
 	:id(iff)
 	op a1 : -> Prin .
@@ -160,50 +148,49 @@ open IFF .
   	eq a1 = enemy .
   	eq r1 = a2 .
   	eq r2 = a3 .
-  	eq k(r3) = k .
-  	eq r(r3) = r .
-  	eq (p(r3) = a2) = false .
+  	eq (r3 = enc(k,r,a2)) = false .
   	red inv1(s,a1,a2,a3,k,r) implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
 close
 
-open IFF .
-	:id(iff)
-	op a1 : -> Prin .
-	op a2 : -> Prin .
-	op a3 : -> Prin .
-	op s : -> Sys .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Cipher .
-  	eq r3 \in ciphers(nw(s)) = true .
-  	eq a1 = enemy .
-  	eq r1 = a2 .
-  	eq r2 = a3 .
-  	eq k(r3) = k .
-  	eq (r(r3) = r) = false .
-  	red inv1(s,a1,a2,a3,k,r) implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
-close
+eof
+-- open IFF .
+-- 	:id(iff)
+-- 	op a1 : -> Prin .
+-- 	op a2 : -> Prin .
+-- 	op a3 : -> Prin .
+-- 	op s : -> Sys .
+-- 	op k : -> Key .
+-- 	op r : -> Rand .
+-- 	op r1 : -> Prin .
+-- 	op r2 : -> Prin .
+-- 	op r3 : -> Cipher .
+--   	eq r3 \in ciphers(nw(s)) = true .
+--   	eq a1 = enemy .
+--   	eq r1 = a2 .
+--   	eq r2 = a3 .
+--   	eq k(r3) = k .
+--   	eq (r(r3) = r) = false .
+--   	red inv1(s,a1,a2,a3,k,r) implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
+-- close
 
-open IFF .
-	:id(iff)
-	op a1 : -> Prin .
-	op a2 : -> Prin .
-	op a3 : -> Prin .
-	op s : -> Sys .
-	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Cipher .
-  	eq r3 \in ciphers(nw(s)) = true .
-  	eq a1 = enemy .
-  	eq r1 = a2 .
-  	eq r2 = a3 .
-  	eq (k(r3) = k) = false .
-  	red inv1(s,a1,a2,a3,k,r) implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
-close
+-- open IFF .
+-- 	:id(iff)
+-- 	op a1 : -> Prin .
+-- 	op a2 : -> Prin .
+-- 	op a3 : -> Prin .
+-- 	op s : -> Sys .
+-- 	op k : -> Key .
+-- 	op r : -> Rand .
+-- 	op r1 : -> Prin .
+-- 	op r2 : -> Prin .
+-- 	op r3 : -> Cipher .
+--   	eq r3 \in ciphers(nw(s)) = true .
+--   	eq a1 = enemy .
+--   	eq r1 = a2 .
+--   	eq r2 = a3 .
+--   	eq (k(r3) = k) = false .
+--   	red inv1(s,a1,a2,a3,k,r) implies inv1(fkrm1(s,r1,r2,r3),a1,a2,a3,k,r) .
+-- close
 
 open IFF .
 	:id(iff)
