@@ -4,311 +4,311 @@ open IFF .
 	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
-	op r : -> Rand .
-	red inv2(init,k,r) .
+	op r1 : -> Rand .
+	red inv2(init,k,r1) .
 close
 
 --> II) Induction cases
---> 1. fkcm1(s,r1,r2,r3)
+--> 1. fkcm1(s,d,e,r2)
 open IFF .
 	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(s))) = true .
-	red inv2(s,k,r) implies inv2(fkcm1(s,r1,r2,r3),k,r) .
+	op r1 : -> Rand .
+	op d : -> Prin .
+	op e : -> Prin .
+	op r2 : -> Rand .
+	eq (r2 \in rands(nw(s))) = true .
+	red inv2(s,k,r1) implies inv2(fkcm1(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(s))) = false .
-	red inv2(s,k,r) implies inv2(fkcm1(s,r1,r2,r3),k,r) .
+	op r1 : -> Rand .
+	op d : -> Prin .
+	op e : -> Prin .
+	op r2 : -> Rand .
+	eq (r2 \in rands(nw(s))) = false .
+	red inv2(s,k,r1) implies inv2(fkcm1(s,d,e,r2),k,r1) .
 close
 
---> 2. fkrm1(s,r1,r2,r3)
+--> 2. fkrm1(s,d,e,r2)
 open IFF .
 	:id(iff)
-  ops r1 r2 : -> Prin .
+  ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
-  op r3 : -> Cipher .
-  eq k(r3) = k .
-  eq r(r3) = r .
-  eq p(r3) = enemy .
-  eq r3 \in ciphers(nw(s)) = true .
-  red lm1(r3,enc(k,r,enemy),ciphers(nw(s)))
-  implies inv2(s,k,r) implies inv2(fkrm1(s,r1,r2,r3),k,r) .
-close
-
-open IFF .
-	:id(iff)
-  ops r1 r2 : -> Prin .
-  op s : -> Sys .
-  op k : -> Key .
-  op r : -> Rand .
-  op r3 : -> Cipher .
-  eq k(r3) = k .
-  eq r(r3) = r .
-  eq p(r3) = enemy .
-  eq r3 \in ciphers(nw(s)) = false .
-  red inv2(s,k,r) implies inv2(fkrm1(s,r1,r2,r3),k,r) .
+  op r1 : -> Rand .
+  op r2 : -> Cipher .
+  eq k(r2) = k .
+  eq r1(r2) = r1 .
+  eq p(r2) = enemy .
+  eq r2 \in ciphers(nw(s)) = true .
+  red lm1(r2,enc(k,r1,enemy),ciphers(nw(s)))
+  implies inv2(s,k,r1) implies inv2(fkrm1(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  ops r1 r2 : -> Prin .
+  ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
-  op r3 : -> Cipher .
-  eq k(r3) = k .
-  eq r(r3) = r .
-  eq (p(r3) = enemy) = false .
-  eq r3 \in ciphers(nw(s)) = true .
-  red inv2(s,k,r) implies inv2(fkrm1(s,r1,r2,r3),k,r) .
+  op r1 : -> Rand .
+  op r2 : -> Cipher .
+  eq k(r2) = k .
+  eq r1(r2) = r1 .
+  eq p(r2) = enemy .
+  eq r2 \in ciphers(nw(s)) = false .
+  red inv2(s,k,r1) implies inv2(fkrm1(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  ops r1 r2 : -> Prin .
+  ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
-  op r3 : -> Cipher .
-  eq k(r3) = k .
-  eq r(r3) = r .
-  eq (p(r3) = enemy) = false .
-  eq r3 \in ciphers(nw(s)) = false .
-  red inv2(s,k,r) implies inv2(fkrm1(s,r1,r2,r3),k,r) .
+  op r1 : -> Rand .
+  op r2 : -> Cipher .
+  eq k(r2) = k .
+  eq r1(r2) = r1 .
+  eq (p(r2) = enemy) = false .
+  eq r2 \in ciphers(nw(s)) = true .
+  red inv2(s,k,r1) implies inv2(fkrm1(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  ops r1 r2 : -> Prin .
+  ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
-  op r3 : -> Cipher .
-  eq k(r3) = k .
-  eq (r(r3) = r) = false .
-  eq r3 \in ciphers(nw(s)) = true .
-  red inv2(s,k,r) implies inv2(fkrm1(s,r1,r2,r3),k,r) .
+  op r1 : -> Rand .
+  op r2 : -> Cipher .
+  eq k(r2) = k .
+  eq r1(r2) = r1 .
+  eq (p(r2) = enemy) = false .
+  eq r2 \in ciphers(nw(s)) = false .
+  red inv2(s,k,r1) implies inv2(fkrm1(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  ops r1 r2 : -> Prin .
+  ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
-  op r3 : -> Cipher .
-  eq k(r3) = k .
-  eq (r(r3) = r) = false .
-  eq r3 \in ciphers(nw(s)) = false .
-  red inv2(s,k,r) implies inv2(fkrm1(s,r1,r2,r3),k,r) .
+  op r1 : -> Rand .
+  op r2 : -> Cipher .
+  eq k(r2) = k .
+  eq (r1(r2) = r1) = false .
+  eq r2 \in ciphers(nw(s)) = true .
+  red inv2(s,k,r1) implies inv2(fkrm1(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  ops r1 r2 : -> Prin .
+  ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
-  op r3 : -> Cipher .
-  eq (k(r3) = k) = false .
-  eq r3 \in ciphers(nw(s)) = true .
-  red inv2(s,k,r) implies inv2(fkrm1(s,r1,r2,r3),k,r) .
+  op r1 : -> Rand .
+  op r2 : -> Cipher .
+  eq k(r2) = k .
+  eq (r1(r2) = r1) = false .
+  eq r2 \in ciphers(nw(s)) = false .
+  red inv2(s,k,r1) implies inv2(fkrm1(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  ops r1 r2 : -> Prin .
+  ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
-  op r3 : -> Cipher .
-  eq (k(r3) = k) = false .
-  eq r3 \in ciphers(nw(s)) = false .
-  red inv2(s,k,r) implies inv2(fkrm1(s,r1,r2,r3),k,r) .
+  op r1 : -> Rand .
+  op r2 : -> Cipher .
+  eq (k(r2) = k) = false .
+  eq r2 \in ciphers(nw(s)) = true .
+  red inv2(s,k,r1) implies inv2(fkrm1(s,d,e,r2),k,r1) .
 close
 
---> 3. fkrm2(s,r1,r2,r3)
+open IFF .
+	:id(iff)
+  ops d e : -> Prin .
+  op s : -> Sys .
+  op k : -> Key .
+  op r1 : -> Rand .
+  op r2 : -> Cipher .
+  eq (k(r2) = k) = false .
+  eq r2 \in ciphers(nw(s)) = false .
+  red inv2(s,k,r1) implies inv2(fkrm1(s,d,e,r2),k,r1) .
+close
+
+--> 3. fkrm2(s,d,e,r2)
 open IFF .
 	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(s))) = true .
+	op r1 : -> Rand .
+	op d : -> Prin .
+	op e : -> Prin .
+	op r2 : -> Rand .
+	eq (r2 \in rands(nw(s))) = true .
 	eq k(enemy) = k .
-	red inv2(s,k,r) implies inv2(fkrm2(s,r1,r2,r3),k,r) .
+	red inv2(s,k,r1) implies inv2(fkrm2(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(s))) = true .
+	op r1 : -> Rand .
+	op d : -> Prin .
+	op e : -> Prin .
+	op r2 : -> Rand .
+	eq (r2 \in rands(nw(s))) = true .
 	eq (k(enemy) = k) = false .
-	red inv2(s,k,r) implies inv2(fkrm2(s,r1,r2,r3),k,r) .
+	red inv2(s,k,r1) implies inv2(fkrm2(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Rand .
-	eq (r3 \in rands(nw(s))) = false .
-	red inv2(s,k,r) implies inv2(fkrm2(s,r1,r2,r3),k,r) .
+	op r1 : -> Rand .
+	op d : -> Prin .
+	op e : -> Prin .
+	op r2 : -> Rand .
+	eq (r2 \in rands(nw(s))) = false .
+	red inv2(s,k,r1) implies inv2(fkrm2(s,d,e,r2),k,r1) .
 close
 
---> 4. sdcm(s,r1,r2,r3)
+--> 4. sdcm(s,d,e,r2)
 open IFF .
 	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Rand .
-	eq (r3 \in ur(s)) = true .
-	red inv2(s,k,r) implies inv2(sdcm(s,r1,r2,r3),k,r) .
+	op r1 : -> Rand .
+	op d : -> Prin .
+	op e : -> Prin .
+	op r2 : -> Rand .
+	eq (r2 \in ur(s)) = true .
+	red inv2(s,k,r1) implies inv2(sdcm(s,d,e,r2),k,r1) .
 close
 
 open IFF .
 	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
-	op r : -> Rand .
-	op r1 : -> Prin .
-	op r2 : -> Prin .
-	op r3 : -> Rand .
-	eq (r3 \in ur(s)) = false .
-	red inv2(s,k,r) implies inv2(sdcm(s,r1,r2,r3),k,r) .
+	op r1 : -> Rand .
+	op d : -> Prin .
+	op e : -> Prin .
+	op r2 : -> Rand .
+	eq (r2 \in ur(s)) = false .
+	red inv2(s,k,r1) implies inv2(sdcm(s,d,e,r2),k,r1) .
 close
 
---> 5. sdrm(s,r1,r2,r3)
+--> 5. sdrm(s,d,e,r2)
 open IFF .
 	:id(iff)
-  op r1 : -> Prin .
+  op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
+  op r1 : -> Rand .
   eq cm?(m1) = true .
   eq m1 \in nw(s) = true .
-  eq r1 = dst(m1) .
+  eq d = dst(m1) .
   eq k = k(dst(m1)) .
-  eq r = r(m1) .
+  eq r1 = r1(m1) .
   eq dst(m1) = enemy .
-  red inv2(s,k,r) implies inv2(sdrm(s,r1,m1),k,r) .
+  red inv2(s,k,r1) implies inv2(sdrm(s,d,m1),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  op r1 : -> Prin .
+  op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
+  op r1 : -> Rand .
   eq cm?(m1) = true .
   eq m1 \in nw(s) = true .
-  eq r1 = dst(m1) .
+  eq d = dst(m1) .
   eq k = k(dst(m1)) .
-  eq r = r(m1) .
+  eq r1 = r1(m1) .
   eq (dst(m1) = enemy) = false .
-  red inv2(s,k,r) implies inv2(sdrm(s,r1,m1),k,r) .
+  red inv2(s,k,r1) implies inv2(sdrm(s,d,m1),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  op r1 : -> Prin .
+  op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
+  op r1 : -> Rand .
   eq cm?(m1) = true .
   eq m1 \in nw(s) = true .
-  eq r1 = dst(m1) .
+  eq d = dst(m1) .
   eq k = k(dst(m1)) .
-  eq (r = r(m1)) = false .
-  red inv2(s,k,r) implies inv2(sdrm(s,r1,m1),k,r) .
+  eq (r1 = r1(m1)) = false .
+  red inv2(s,k,r1) implies inv2(sdrm(s,d,m1),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  op r1 : -> Prin .
+  op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
+  op r1 : -> Rand .
   eq cm?(m1) = true .
   eq m1 \in nw(s) = true .
-  eq r1 = dst(m1) .
+  eq d = dst(m1) .
   eq (k = k(dst(m1))) = false .
-  red inv2(s,k,r) implies inv2(sdrm(s,r1,m1),k,r) .
+  red inv2(s,k,r1) implies inv2(sdrm(s,d,m1),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  op r1 : -> Prin .
+  op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
+  op r1 : -> Rand .
   eq cm?(m1) = true .
   eq m1 \in nw(s) = true .
-  eq (r1 = dst(m1)) = false .
-  red inv2(s,k,r) implies inv2(sdrm(s,r1,m1),k,r) .
+  eq (d = dst(m1)) = false .
+  red inv2(s,k,r1) implies inv2(sdrm(s,d,m1),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  op r1 : -> Prin .
+  op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
+  op r1 : -> Rand .
   eq cm?(m1) = true .
   eq m1 \in nw(s) = false .
-  red inv2(s,k,r) implies inv2(sdrm(s,r1,m1),k,r) .
+  red inv2(s,k,r1) implies inv2(sdrm(s,d,m1),k,r1) .
 close
 
 open IFF .
 	:id(iff)
-  op r1 : -> Prin .
+  op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
   op s : -> Sys .
   op k : -> Key .
-  op r : -> Rand .
+  op r1 : -> Rand .
   eq cm?(m1) = false .
-  red inv2(s,k,r) implies inv2(sdrm(s,r1,m1),k,r) .
+  red inv2(s,k,r1) implies inv2(sdrm(s,d,m1),k,r1) .
 close
 
 open IFF .
