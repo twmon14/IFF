@@ -1,20 +1,20 @@
 --> I) Base case
 --> init
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
-	red inv1(init,a,b,c,k,r1) .
+	red iff(init,a,b,c,k,r1) .
 close
 
 --> II) Induction cases
 --> 1. fkcm1(s,d,e,r2)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -25,11 +25,11 @@ open IFF .
 	op e : -> Prin .
 	op r2 : -> Rand .
 	eq (r2 \in rands(nw(s))) = true .
-	red inv1(s,a,b,c,k,r1) implies inv1(fkcm1(s,d,e,r2),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(fkcm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -40,12 +40,12 @@ open IFF .
 	op e : -> Prin .
 	op r2 : -> Rand .
 	eq (r2 \in rands(nw(s))) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(fkcm1(s,d,e,r2),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(fkcm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 --> 2. fkrm1(s,d,e,r2)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -64,11 +64,11 @@ open IFF .
   	eq p(r2) = b .
 
   	eq k = k(enemy) .
-  	red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  	red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -90,12 +90,12 @@ open IFF .
   	eq b = enemy .
   	eq enc(k,r1,enemy) \in ciphers(nw(s)) = true .
   	red inv2(s,k,r1)
-    implies inv1(s,a,b,c,k,r1)
-    implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+    implies iff(s,a,b,c,k,r1)
+    implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -117,12 +117,12 @@ open IFF .
   	eq b = enemy .
   	eq enc(k,r1,enemy) \in ciphers(nw(s)) = false .
   	red lm1(r2,enc(k,r1,enemy),ciphers(nw(s)))
-    implies inv1(s,a,b,c,k,r1)
-    implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+    implies iff(s,a,b,c,k,r1)
+    implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -142,11 +142,11 @@ open IFF .
 
   	eq (k = k(enemy)) = false .
   	eq (b = enemy) = false .
-  	red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  	red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -163,11 +163,11 @@ open IFF .
   	eq k(r2) = k .
   	eq r1(r2) = r1 .
   	eq (p(r2) = b) = false .
-  	red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  	red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -183,11 +183,11 @@ open IFF .
   	eq e = c .
   	eq k(r2) = k .
   	eq (r1(r2) = r1) = false .
-  	red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  	red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -202,11 +202,11 @@ open IFF .
   	eq d = b .
   	eq e = c .
   	eq (k(r2) = k) = false .
-  	red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  	red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -220,11 +220,11 @@ open IFF .
   	eq a = enemy .
   	eq d = b .
   	eq (e = c) = false .
-  	red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  	red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -237,11 +237,11 @@ open IFF .
   	eq r2 \in ciphers(nw(s)) = true .
   	eq a = enemy .
   	eq (d = b) = false .
-  	red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  	red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -253,11 +253,11 @@ open IFF .
 	op r2 : -> Cipher .
   	eq r2 \in ciphers(nw(s)) = true .
   	eq (a = enemy) = false .
-  	red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  	red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -268,12 +268,12 @@ open IFF .
 	op e : -> Prin .
 	op r2 : -> Cipher .
   	eq r2 \in ciphers(nw(s)) = false .
-  red inv1(s,a,b,c,k,r1) implies inv1(fkrm1(s,d,e,r2),a,b,c,k,r1) .
+  red iff(s,a,b,c,k,r1) implies iff(fkrm1(s,d,e,r2),a,b,c,k,r1) .
 close
 
 --> 3. fkrm2(s,d,e,r2)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -286,11 +286,11 @@ open IFF .
 	eq (r2 \in rands(nw(s))) = true .
 	eq b = enemy .
 	eq k(enemy) = k .
-	red inv1(s,a,b,c,k,r1) implies inv1(fkrm2(s,d,e,r2),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(fkrm2(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -303,11 +303,11 @@ open IFF .
 	eq (r2 \in rands(nw(s))) = true .
 	eq b = enemy .
 	eq (k(enemy) = k) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(fkrm2(s,d,e,r2),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(fkrm2(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -319,11 +319,11 @@ open IFF .
 	op r2 : -> Rand .
 	eq (r2 \in rands(nw(s))) = true .
 	eq (b = enemy) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(fkrm2(s,d,e,r2),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(fkrm2(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -334,12 +334,12 @@ open IFF .
 	op e : -> Prin .
 	op r2 : -> Rand .
 	eq (r2 \in rands(nw(s))) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(fkrm2(s,d,e,r2),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(fkrm2(s,d,e,r2),a,b,c,k,r1) .
 close
 
 --> 4. sdcm(s,d,e,r2)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -350,11 +350,11 @@ open IFF .
 	op e : -> Prin .
 	op r2 : -> Rand .
 	eq (r2 \in ur(s)) = true .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdcm(s,d,e,r2),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdcm(s,d,e,r2),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -365,12 +365,12 @@ open IFF .
 	op e : -> Prin .
 	op r2 : -> Rand .
 	eq (r2 \in ur(s)) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdcm(s,d,e,r2),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdcm(s,d,e,r2),a,b,c,k,r1) .
 close
 
 --> 5. sdrm(s,d,e,r2)
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -390,11 +390,11 @@ open IFF .
   	eq b = dst(e) .
 
   	eq dst(e) = enemy .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -414,11 +414,11 @@ open IFF .
   	eq b = dst(e) .
 
   	eq (dst(e) = enemy) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -436,11 +436,11 @@ open IFF .
   	eq k = k(dst(e)) .
   	eq r1 = r1(e) .
   	eq (b = dst(e)) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -457,11 +457,11 @@ open IFF .
   	eq c = src(e) .
   	eq k = k(dst(e)) .
   	eq (r1 = r1(e)) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -477,11 +477,11 @@ open IFF .
   	eq a = dst(e) .
   	eq c = src(e) .
   	eq (k = k(dst(e))) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -496,11 +496,11 @@ open IFF .
 
   	eq a = dst(e) .
   	eq (c = src(e)) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -514,11 +514,11 @@ open IFF .
 	eq d = dst(e) .
 
   	eq (a = dst(e)) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -530,11 +530,11 @@ open IFF .
 	eq cm?(e) = true .
 	eq (e \in nw(s)) = true .
 	eq (d = dst(e)) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -545,11 +545,11 @@ open IFF .
 	op e : -> Msg .
 	eq cm?(e) = true .
 	eq (e \in nw(s)) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-	:id(inv1)
+	:id(iff)
 	op a : -> Prin .
 	op b : -> Prin .
 	op c : -> Prin .
@@ -559,9 +559,9 @@ open IFF .
 	op d : -> Prin .
 	op e : -> Msg .
 	eq cm?(e) = false .
-	red inv1(s,a,b,c,k,r1) implies inv1(sdrm(s,d,e),a,b,c,k,r1) .
+	red iff(s,a,b,c,k,r1) implies iff(sdrm(s,d,e),a,b,c,k,r1) .
 close
 
 open IFF .
-  :proof(inv1)
+  :proof(iff)
 close
