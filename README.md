@@ -1,5 +1,5 @@
 # IFF
-Formal verification of IFF protocol with CiMPG  
+### Formal verification of IFF protocol with CiMPG  
   
 * proof_scores directory: contains proof scores for two invariants  
 * cimpg.cafe: annotated proof scores, input for CiMPG  
