@@ -1,5 +1,8 @@
 # IFF
 Formal verification of IFF protocol with CiMPG  
-*prsc_x: proof score of inv x (x = inv1,inv2)  
-*allpfsc.cafe: proof scripts of inv1 and inv2  
+  
+*inv_x: each proof score of inv x (x = inv1,inv2)  
+*allproofscores.cafe: all proof scores of inv1 and inv2  
+*autoproofscripts.cafe: auto-generated proof scripts of inv1 and inv2 by CiMPG  
+*manualproofscripts.cafe: manually written proof scripts of inv1 and inv2  
 *iff.cafe: CafeObj specification of IFF  
