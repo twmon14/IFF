@@ -1,7 +1,6 @@
 --> I) Base case
 --> init
 open IFF .
-	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
@@ -11,7 +10,6 @@ close
 --> II) Induction cases
 --> 1. fkcm1(s,d,e,r2)
 open IFF .
-	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
@@ -23,7 +21,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
@@ -36,7 +33,6 @@ close
 
 --> 2. fkrm1(s,d,e,r2)
 open IFF .
-	:id(iff)
   ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
@@ -51,7 +47,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
@@ -65,7 +60,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
@@ -79,7 +73,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
@@ -93,7 +86,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
@@ -106,7 +98,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
@@ -119,7 +110,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
@@ -131,7 +121,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   ops d e : -> Prin .
   op s : -> Sys .
   op k : -> Key .
@@ -144,7 +133,6 @@ close
 
 --> 3. fkrm2(s,d,e,r2)
 open IFF .
-	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
@@ -157,7 +145,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
@@ -170,7 +157,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
@@ -183,7 +169,6 @@ close
 
 --> 4. sdcm(s,d,e,r2)
 open IFF .
-	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
@@ -195,7 +180,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
 	op s : -> Sys .
 	op k : -> Key .
 	op r1 : -> Rand .
@@ -208,7 +192,6 @@ close
 
 --> 5. sdrm(s,d,e,r2)
 open IFF .
-	:id(iff)
   op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
@@ -225,7 +208,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
@@ -242,7 +224,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
@@ -258,7 +239,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
@@ -273,7 +253,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
@@ -287,7 +266,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
@@ -300,7 +278,6 @@ open IFF .
 close
 
 open IFF .
-	:id(iff)
   op d : -> Prin .
   op m1 : -> Msg .
   op nw1 : -> Network .
@@ -311,6 +288,3 @@ open IFF .
   red inv2(s,k,r1) implies inv2(sdrm(s,d,m1),k,r1) .
 close
 
-open IFF .
-  :proof(iff)
-close
