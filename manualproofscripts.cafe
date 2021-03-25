@@ -27,7 +27,6 @@ open IFF .
 
 	:apply (rd)
     -- inv2
-    :apply(tc)
 
 	:def c2 = :ctf [R#Rand \in rands(nw(S#Sys)) .]
 
