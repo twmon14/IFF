@@ -13,7 +13,7 @@ endfm
 
 fmod PRIN is
   sort Prin .
-  op p q intr : -> Prin [ctor] .
+  ops p q intr : -> Prin [ctor] .
 endfm
 
 view Prin from TRIV to PRIN is
@@ -81,6 +81,10 @@ fmod MSG is
   pr RAND .
   pr CIPHER .
   sort Msg .
+
+  op empt : -> Msg [ctor] .
+  op empCM : -> Msg [ctor] .
+  op empRM : -> Msg [ctor] .
 ---   --      creator source destination body
 ---   --      ---------------------------------
   op cm : Prin    Prin   Prin        Rand   -> Msg .
@@ -120,37 +124,37 @@ view Msg from TRIV to MSG is
   sort Elt to Msg .
 endv
 
-fmod BAG{D :: TRIV} is
-  sort Bag{D} .
-  subsort D$Elt < Bag{D} .
-  op void : -> Bag{D} [ctor] .
-  op _ _ : Bag{D} Bag{D} -> Bag{D} [ctor assoc comm id: void].
-  op _\in_ : D$Elt Bag{D} -> Bool .
-  var B : Bag{D} .
-  vars E1 E2 : D$Elt .
-  eq E1 \in void = false .
-  ceq E1 \in (E1 B) = true .
-  ceq E1 \in (B) = false [owise] .
-endfm
+--- fmod BAG{D :: TRIV} is
+---   sort Bag{D} .
+---   subsort D$Elt < Bag{D} .
+---   op void : -> Bag{D} [ctor] .
+---   op __ : Bag{D} Bag{D} -> Bag{D} [ctor assoc comm id: void].
+---   op _\in_ : D$Elt Bag{D} -> Bool .
+---   var B : Bag{D} .
+---   vars E1 E2 : D$Elt .
+---   eq E1 \in void = false .
+---   ceq E1 \in (E1 B) = true .
+---   ceq E1 \in (B) = false [owise] .
+--- endfm
 
-fmod SET{D :: TRIV} is
-  sort Set{D} .
-  subsort D$Elt < Set{D} .  
-  op empty : -> Set{D} .
-  op _ _ : Set{D} Set{D} -> Set{D} [ctor assoc comm id: empty].
-  op _\in_ : D$Elt Set{D} -> Bool .
-  var S : Set{D} .
-  vars E1 E2 : D$Elt .
-  eq E1 \in empty = false .
-  ceq E1 \in (E1 S) = true .
-  ceq E1 \in (S) = false [owise] .
-endfm
+--- fmod SET{D :: TRIV} is
+---   sort Set{D} .
+---   subsort D$Elt < Set{D} .  
+---   op empty : -> Set{D} .
+---   op _ _ : Set{D} Set{D} -> Set{D} [ctor assoc comm id: empty].
+---   op _\in_ : D$Elt Set{D} -> Bool .
+---   var S : Set{D} .
+---   vars E1 E2 : D$Elt .
+---   eq E1 \in empty = false .
+---   ceq E1 \in (E1 S) = true .
+---   ceq E1 \in (S) = false [owise] .
+--- endfm
 
-fmod COLLECTION{D :: TRIV} is
-  sort Col{D} .
-  subsort D$Elt < Col{D} .
-  op _\in_ : D$Elt Col{D} -> Bool .
-endfm
+--- fmod COLLECTION{D :: TRIV} is
+---   sort Col{D} .
+---   subsort D$Elt < Col{D} .
+---   op _\in_ : D$Elt Col{D} -> Bool .
+--- endfm
 
 fmod NETWORK is
   pr SOUP{Msg} .
@@ -172,12 +176,17 @@ fmod OCOM is
     pr CIPHER-SOUP .
     pr PRIN-SOUP .
     sort OCom .
-
+    
+    op newmsg:_ : Msg -> OCom [ctor] .
     op nw:_ : Soup{Msg} -> OCom [ctor] .
     op rands:_ : Soup{Rand} -> OCom [ctor] .
     op urand:_ : Soup{Rand} -> OCom [ctor] .
     op cipher:_ : Soup{Cipher} -> OCom [ctor] .
     op prins:_ : Soup{Prin} -> OCom [ctor] .
+    op cm:_ : Msg -> OCom [ctor] .
+    op rm:_ : Msg -> OCom [ctor] .
+    op nwCM:_ : Soup{Msg} -> OCom [ctor] .
+    op nwRM:_ : Soup{Msg} -> OCom [ctor] .
 endfm
 
 view OCom from TRIV to OCOM is
@@ -193,50 +202,66 @@ fmod CONFIG is
     sort Config .
     op {_} : Soup{OCom} -> Config [ctor] .
     op init : -> Config .
-    eq init = {(nw: emp) (urand: emp) (rands: r) (cipher: emp) (prins: (p q intr))} .
+    eq init = {(newmsg: empt) (cm: empCM) (rm: empRM) (nw: emp) (urand: emp) (rands: r) (cipher: emp) (nwCM: emp) (nwRM: emp) (prins: (p q intr))} .
 endfm
 
 mod IFF is
     inc CONFIG .
     
-    var M : Msg .
+    vars M CM RM : Msg .
     var NW : Soup{Msg} .
+    vars NWCM NWRM : Soup{Msg} .
+
     vars R : Rand .
     var Rs : Soup{Rand} .
+
     vars P Q P' Q' P'' Q'' : Prin .
-    var Ps : Soup{Prin} .
+    var Ps : Soup{Prin} 
+    .
     var C : Cipher .
     var CE : Soup{Cipher} .
+
     var OCs : Soup{OCom} .
 
     rl [sdcm] :
-    {(nw: NW) (urand: emp) (rands: R) (cipher: emp) (prins: (P Q intr))}
+    {(newmsg: M) (cm: CM) (rm: RM) (nw: NW) (urand: Rs) (rands: r) (cipher: CE) 
+        (nwCM: NWCM) (nwRM: NWRM) (prins: (P Q Ps))}
     =>
-    {(nw: (cm(P,P,Q,R) NW)) (urand: R) (rands: emp) (cipher: emp) (prins: (P Q intr)) OCs} .
+    {(newmsg: cm(P,P,Q,r)) (cm: cm(P,P,Q,r)) (rm: RM) (nw: (cm(P,P,Q,r) NW)) (urand: (r Rs)) (rands: emp) 
+        (cipher: CE) (nwCM: (cm(P,P,Q,r) NWCM)) (nwRM: NWRM) (prins: (P Q Ps))} .
 
     rl [sdrm] :
-    {(nw: (cm(P',P,Q,R) NW)) (urand: Rs) (rands: emp) (cipher: emp) (prins: (P Q intr)) OCs}
+    {(newmsg: M) (cm: CM) (rm: RM) (nw: (cm(P',P,Q,R) NW)) (urand: Rs) (rands: emp) (cipher: CE) 
+    (nwCM: NWCM) (nwRM: NWRM) (prins: (P Q Ps)) OCs}
     =>
-    {(nw: (rm(Q,Q,P,enc(k(P),R,Q)) NW)) (urand: Rs) (rands: emp) (cipher: (enc(k(P),R,Q) CE)) (prins: (P Q intr)) OCs} .
+    {(newmsg: rm(Q,Q,P,enc(k(P),R,Q))) (cm: CM) (rm: rm(Q,Q,P,enc(k(P),R,Q))) (nw: (rm(Q,Q,P,enc(k(P),R,Q)) NW)) 
+        (urand: Rs) (cipher: (enc(k(P),R,Q) CE)) (nwCM: NWCM) (nwRM: (rm(Q,Q,P,enc(k(P),R,Q)) NWRM)) (prins: (P Q Ps)) OCs} .
 
     rl [fkcm1] :
-    {(nw: NW) (urand: (R Rs)) (prins: (P Q intr)) OCs}
+    {(newmsg: M) (cm: CM) (rm: RM) (nw: NW) (urand: (R Rs)) (cipher: CE) 
+        (nwCM: NWCM) (nwRM: NWRM) (prins: (P Q Ps)) OCs}
     =>
-    {(nw: (cm(intr,P,Q,R) NW)) (urand: (R Rs)) (prins: (P Q intr)) OCs} .
+    {(newmsg: cm(intr,P,Q,R)) (cm: cm(intr,P,Q,R)) (rm: RM) (nw: (cm(intr,P,Q,R) NW)) (urand: (R Rs)) 
+        (cipher: CE) (nwCM: (cm(intr,P,Q,R) NWCM)) (nwRM: NWRM) (prins: (P Q Ps)) OCs} .
 
     rl [fkrm1] :
-    {(nw: NW) (urand: (R Rs)) (prins: (P Q intr)) OCs}
+    {(newmsg: M) (cm: CM) (rm: RM) (nw: NW) (urand: (R Rs)) (cipher: CE) 
+        (nwCM: NWCM) (nwRM: NWRM) (prins: (P Q Ps)) OCs}
     =>
-    {(nw: (rm(intr,Q,P,enc(k(intr),R,Q)) NW)) (urand: (R Rs)) (prins: (P Q intr)) OCs} .
+    {(newmsg: rm(intr,Q,P,enc(k(intr),R,Q))) (cm: CM) (rm: rm(intr,Q,P,enc(k(intr),R,Q))) 
+        (nw: (rm(intr,Q,P,enc(k(intr),R,Q)) NW)) (urand: (R Rs)) (cipher: (enc(k(intr),R,Q) CE)) 
+        (nwCM: NWCM) (nwRM: (rm(intr,Q,P,enc(k(intr),R,Q)) NWRM)) (prins: (P Q Ps)) OCs} .
 
     rl [fkrm2] :
-    {(nw: NW) (urand: (R Rs)) (cipher: (C CE)) (prins: (P Q intr)) OCs}
+    {(newmsg: M) (cm: CM) (rm: RM) (nw: NW) (urand: (R Rs)) (cipher: (C CE)) 
+        (nwCM: NWCM) (nwRM: NWRM) (prins: (P Q Ps)) OCs}
     =>
-    {(nw: (rm(intr,Q,P,C) NW)) (urand: (R Rs)) (cipher: (C CE)) (prins: (P Q intr)) OCs} .
+    {(newmsg: rm(intr,Q,P,C)) (cm: CM) (rm: rm(intr,Q,P,C)) (nw: (rm(intr,Q,P,C) NW)) (urand: (R Rs)) 
+        (cipher: (C CE)) (nwCM: NWCM) (nwRM: (rm(intr,Q,P,C) NWRM)) (prins: (P Q Ps)) OCs} .
 endm
 
 
-
+eof
 
 
 
