@@ -1,0 +1,314 @@
+fmod SOUP{E :: TRIV} is
+    sort Soup{E} .
+    subsort E$Elt < Soup{E} .
+    op emp : -> Soup{E} [ctor] .
+    op _ _ : Soup{E} Soup{E} -> Soup{E} [ctor assoc comm id: emp].
+    op _\in_ : E$Elt Soup{E} -> Bool .
+    var X : E$Elt .
+    var S : Soup{E} .
+    eq X X = X . *** idempotency
+    eq X \in X S = true .
+    eq X \in S = false [owise] .
+endfm
+
+fmod PRIN is
+  sort Prin .
+  op p q intr : -> Prin [ctor] .
+endfm
+
+view Prin from TRIV to PRIN is
+    sort Elt to Prin .
+endv
+
+fmod PRIN-SOUP is
+    pr SOUP{Prin} .
+endfm
+
+fmod KEY is
+  pr PRIN .
+  sort Key .
+  op k : Prin -> Key .
+  op p : Key -> Prin .
+  var P : Prin .
+  vars K1 K2 : Key .
+  eq p(k(P)) = P .
+---   ceq (K1 = K2) = true if not(p(K1) = intr) and not(p(K2) = intr) .
+---   ceq (K1 = K2) = false if not(p(K1) = intr) and p(K2) = intr .
+endfm
+
+fmod RAND is
+  sort Rand .
+  op r : -> Rand [ctor] .
+endfm
+
+view Rand from TRIV to RAND is
+    sort Elt to Rand .
+endv
+
+fmod RAND-SOUP is
+    pr SOUP{Rand} .
+endfm
+
+fmod CIPHER is
+  pr PRIN .
+  pr KEY .
+  pr RAND .
+  sort Cipher .
+  op enc : Key Rand Prin -> Cipher .
+  op k : Cipher -> Key .
+  op r : Cipher -> Rand .
+  op p : Cipher -> Prin .
+  var K : Key .
+  var R : Rand .
+  var P : Prin .
+  vars C1 C2 : Cipher .
+  eq k(enc(K,R,P)) = K .
+  eq r(enc(K,R,P)) = R .
+  eq p(enc(K,R,P)) = P .
+---   eq (C1 = C2) = (k(C1) = k(C2) and r(C1) = r(C2) and p(C1) = p(C2)) .
+endfm
+
+view Cipher from TRIV to CIPHER is
+  sort Elt to Cipher .
+endv
+
+fmod CIPHER-SOUP is
+  pr SOUP{Cipher} .
+endfm
+
+fmod MSG is
+  pr PRIN .
+  pr RAND .
+  pr CIPHER .
+  sort Msg .
+---   --      creator source destination body
+---   --      ---------------------------------
+  op cm : Prin    Prin   Prin        Rand   -> Msg .
+  op rm : Prin    Prin   Prin        Cipher -> Msg .
+  
+---   op cm? : Msg -> Bool .
+---   op rm? : Msg -> Bool .
+  op crt : Msg -> Prin .
+  op src : Msg -> Prin .
+  op dst : Msg -> Prin .
+  op r : Msg -> Rand .
+  op c : Msg -> Cipher .
+  
+  vars P1 P2 P3 : Prin .
+  var R : Rand .
+  var C : Cipher .
+  vars M1 M2 : Msg .
+  
+---   eq cm?(cm(P1,P2,P3,R)) = true .
+---   eq cm?(rm(P1,P2,P3,C)) = false .
+---   eq rm?(cm(P1,P2,P3,R)) = false .
+---   eq rm?(rm(P1,P2,P3,C)) = true .
+  eq crt(cm(P1,P2,P3,R)) = P1 .
+  eq crt(rm(P1,P2,P3,C)) = P1 .
+  eq src(cm(P1,P2,P3,R)) = P2 .
+  eq src(rm(P1,P2,P3,C)) = P2 .
+  eq dst(cm(P1,P2,P3,R)) = P3 .
+  eq dst(rm(P1,P2,P3,C)) = P3 .
+  eq r(cm(P1,P2,P3,R)) = R .
+  eq c(rm(P1,P2,P3,C)) = C .
+  
+---   ceq (M1 = M2) = (cm?(M1) and crt(M1) = crt(M2) and src(M1) = src(M2) and dst(M1) = dst(M2) and r(M1) = r(M2)) if cm?(M2) .
+---   ceq (M1 = M2) = (rm?(M1) and crt(M1) = crt(M2) and src(M1) = src(M2) and dst(M1) = dst(M2) and c(M1) = c(M2)) if rm?(M2) .
+endfm
+
+view Msg from TRIV to MSG is
+  sort Elt to Msg .
+endv
+
+fmod BAG{D :: TRIV} is
+  sort Bag{D} .
+  subsort D$Elt < Bag{D} .
+  op void : -> Bag{D} [ctor] .
+  op _ _ : Bag{D} Bag{D} -> Bag{D} [ctor assoc comm id: void].
+  op _\in_ : D$Elt Bag{D} -> Bool .
+  var B : Bag{D} .
+  vars E1 E2 : D$Elt .
+  eq E1 \in void = false .
+  ceq E1 \in (E1 B) = true .
+  ceq E1 \in (B) = false [owise] .
+endfm
+
+fmod SET{D :: TRIV} is
+  sort Set{D} .
+  subsort D$Elt < Set{D} .  
+  op empty : -> Set{D} .
+  op _ _ : Set{D} Set{D} -> Set{D} [ctor assoc comm id: empty].
+  op _\in_ : D$Elt Set{D} -> Bool .
+  var S : Set{D} .
+  vars E1 E2 : D$Elt .
+  eq E1 \in empty = false .
+  ceq E1 \in (E1 S) = true .
+  ceq E1 \in (S) = false [owise] .
+endfm
+
+fmod COLLECTION{D :: TRIV} is
+  sort Col{D} .
+  subsort D$Elt < Col{D} .
+  op _\in_ : D$Elt Col{D} -> Bool .
+endfm
+
+fmod NETWORK is
+  pr SOUP{Msg} .
+  op _\in_ : Cipher Soup{Msg} -> Bool .
+
+  var NW : Soup{Msg} .
+  var M : Msg .
+  var R : Rand .
+  var C : Cipher .
+  vars P1 P2 P3 : Prin .
+
+  eq C \in rm(P1, P2, P3, C) NW = true .
+  eq C \in NW = false [owise] .
+endfm
+--- -- here
+fmod OCOM is
+    pr NETWORK .
+    pr RAND-SOUP .
+    pr CIPHER-SOUP .
+    pr PRIN-SOUP .
+    sort OCom .
+
+    op nw:_ : Soup{Msg} -> OCom [ctor] .
+    op rands:_ : Soup{Rand} -> OCom [ctor] .
+    op urand:_ : Soup{Rand} -> OCom [ctor] .
+    op cipher:_ : Soup{Cipher} -> OCom [ctor] .
+    op prins:_ : Soup{Prin} -> OCom [ctor] .
+endfm
+
+view OCom from TRIV to OCOM is
+    sort Elt to OCom .
+endv
+
+fmod OCOM-SOUP is
+    pr SOUP{OCom} .
+endfm
+
+fmod CONFIG is
+    pr OCOM-SOUP .
+    sort Config .
+    op {_} : Soup{OCom} -> Config [ctor] .
+    op init : -> Config .
+    eq init = {(nw: emp) (urand: emp) (rands: r) (cipher: emp) (prins: (p q intr))} .
+endfm
+
+mod IFF is
+    inc CONFIG .
+    
+    var M : Msg .
+    var NW : Soup{Msg} .
+    vars R : Rand .
+    var Rs : Soup{Rand} .
+    vars P Q P' Q' P'' Q'' : Prin .
+    var Ps : Soup{Prin} .
+    var C : Cipher .
+    var CE : Soup{Cipher} .
+    var OCs : Soup{OCom} .
+
+    rl [sdcm] :
+    {(nw: NW) (urand: emp) (rands: R) (cipher: emp) (prins: (P Q intr))}
+    =>
+    {(nw: (cm(P,P,Q,R) NW)) (urand: R) (rands: emp) (cipher: emp) (prins: (P Q intr)) OCs} .
+
+    rl [sdrm] :
+    {(nw: (cm(P',P,Q,R) NW)) (urand: Rs) (rands: emp) (cipher: emp) (prins: (P Q intr)) OCs}
+    =>
+    {(nw: (rm(Q,Q,P,enc(k(P),R,Q)) NW)) (urand: Rs) (rands: emp) (cipher: (enc(k(P),R,Q) CE)) (prins: (P Q intr)) OCs} .
+
+    rl [fkcm1] :
+    {(nw: NW) (urand: (R Rs)) (prins: (P Q intr)) OCs}
+    =>
+    {(nw: (cm(intr,P,Q,R) NW)) (urand: (R Rs)) (prins: (P Q intr)) OCs} .
+
+    rl [fkrm1] :
+    {(nw: NW) (urand: (R Rs)) (prins: (P Q intr)) OCs}
+    =>
+    {(nw: (rm(intr,Q,P,enc(k(intr),R,Q)) NW)) (urand: (R Rs)) (prins: (P Q intr)) OCs} .
+
+    rl [fkrm2] :
+    {(nw: NW) (urand: (R Rs)) (cipher: (C CE)) (prins: (P Q intr)) OCs}
+    =>
+    {(nw: (rm(intr,Q,P,C) NW)) (urand: (R Rs)) (cipher: (C CE)) (prins: (P Q intr)) OCs} .
+endm
+
+
+
+
+
+
+
+
+--- mod* IFF is
+---   pr(NETWORK)
+---   pr(SET(RAND)*issort Set -> URandsendfm)
+---   [Sys]
+--- -- an arbitrary initial state
+---   op init : -> Sys isconstrendfm
+--- -- observations
+---   op nw : Sys -> Network
+---   op ur : Sys -> URands
+--- -- actions
+---   op sdcm : Sys Prin Prin Rand -> Sys isconstrendfm
+---   op sdrm : Sys Prin Msg -> Sys isconstrendfm
+---   --
+---   op fkcm1 : Sys Prin Prin Rand -> Sys isconstrendfm
+---   op fkrm1 : Sys Prin Prin Cipher -> Sys isconstrendfm
+---   op fkrm2 : Sys Prin Prin Rand -> Sys isconstrendfm
+
+--- -- CafeOBJ variables
+---   var S : Sys
+---   vars P1 P2 P3 : Prin
+---   vars M1 M2 : Msg
+---   var R : Rand
+---   var C : Cipher
+---   var K : Key
+
+--- -- for any initial state
+---   eq nw(init) = void .
+---   eq ur(init) = empty .
+
+--- -- for action sdcm
+---   op c-sdcm : Sys Prin Prin Rand -> Bool
+---   eq c-sdcm(S,P1,P2,R) = (not (R \in ur(S))) .
+---   --
+---   ceq nw(sdcm(S,P1,P2,R)) = (cm(P1,P1,P2,R) , nw(S)) if c-sdcm(S,P1,P2,R) .
+---   ceq ur(sdcm(S,P1,P2,R)) = (R ur(S))                if c-sdcm(S,P1,P2,R) .
+---   ceq sdcm(S,P1,P2,R)     = S                      if not c-sdcm(S,P1,P2,R) .
+
+--- -- for action sdrm
+---   op c-sdrm : Sys Prin Msg -> Bool
+---   eq c-sdrm(S,P1,M1) = (M1 \in nw(S) and cm?(M1) and P1 = dst(M1)) .
+---   --
+---   ceq nw(sdrm(S,P1,M1)) = rm(P1,P1,src(M1),enc(k(P1),r(M1),P1)) , nw(S) if c-sdrm(S,P1,M1) .
+---   eq ur(sdrm(S,P1,M1))  = ur(S) .
+---   ceq sdrm(S,P1,M1)     = S                                             if not c-sdrm(S,P1,M1) .
+
+--- -- for action fkcm1
+---   op c-fkcm1 : Sys Prin Prin Rand -> Bool
+---   eq c-fkcm1(S,P1,P2,R) = R \in rands(nw(S)) .
+---   --
+---   ceq nw(fkcm1(S,P1,P2,R)) = cm(intr,P1,P2,R) , nw(S) if c-fkcm1(S,P1,P2,R) .
+---   eq ur(fkcm1(S,P1,P2,R))  = ur(S) .
+---   ceq fkcm1(S,P1,P2,R)     = S                         if not c-fkcm1(S,P1,P2,R) .
+
+--- -- for action fkrm1
+---   op c-fkrm1 : Sys Prin Prin Cipher -> Bool
+---   eq c-fkrm1(S,P1,P2,C) = C \in ciphers(nw(S)) .
+---   --
+---   ceq nw(fkrm1(S,P1,P2,C)) = rm(intr,P1,P2,C) , nw(S) if c-fkrm1(S,P1,P2,C) .
+---   eq ur(fkrm1(S,P1,P2,C))  = ur(S) .
+---   ceq fkrm1(S,P1,P2,C)     = S                         if not c-fkrm1(S,P1,P2,C) .
+
+--- -- for action fkrm2
+---   op c-fkrm2 : Sys Prin Prin Rand -> Bool
+---   eq c-fkrm2(S,P1,P2,R) = R \in rands(nw(S)) .
+---   --
+---   ceq nw(fkrm2(S,P1,P2,R)) = rm(intr,P1,P2,enc(k(intr),R,P1)) , nw(S) if c-fkrm2(S,P1,P2,R) .
+---   eq ur(fkrm2(S,P1,P2,R))  = ur(S) .
+---   ceq fkrm2(S,P1,P2,R)     = S                       if not c-fkrm2(S,P1,P2,R) .
+
+--- endfm
