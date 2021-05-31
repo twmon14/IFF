@@ -234,7 +234,7 @@ mod IFF is
     {(newmsg: M) (cm: CM) (rm: RM) (nw: (cm(P',P,Q,R) NW)) (urand: Rs) (rands: emp) (cipher: CE) 
     (nwCM: NWCM) (nwRM: NWRM) (prins: (P Q Ps)) OCs}
     =>
-    {(newmsg: rm(Q,Q,P,enc(k(P),R,Q))) (cm: CM) (rm: rm(Q,Q,P,enc(k(P),R,Q))) (nw: (rm(Q,Q,P,enc(k(P),R,Q)) NW)) 
+    {(newmsg: rm(Q,Q,P,enc(k(P),R,Q))) (cm: CM) (rm: rm(Q,Q,P,enc(k(P),R,Q))) (nw: (rm(Q,Q,P,enc(k(P),R,Q)) cm(P',P,Q,R) NW)) 
         (urand: Rs) (cipher: (enc(k(P),R,Q) CE)) (nwCM: NWCM) (nwRM: (rm(Q,Q,P,enc(k(P),R,Q)) NWRM)) (prins: (P Q Ps)) OCs} .
 
     rl [fkcm1] :
