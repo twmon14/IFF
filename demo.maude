@@ -1,6 +1,6 @@
 in utils .
 in meta-utils .
-in iff .   
+in iff_new .   
 in metaSearch .
 
 mod DEMO is
@@ -23,4 +23,4 @@ mod DEMO is
     eq downTermSearch((T,TL)) =  downTerm(T, nil) || downTermSearch(TL) .
 endm
 
-reduce in DEMO : downTermSearch(genSeq('IFF, upTerm(init), 5)) .
+reduce in DEMO : downTermSearch(genSeq('IFF, upTerm(init), 60)) .
