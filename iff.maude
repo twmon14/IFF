@@ -235,8 +235,8 @@ mod IFF is
     {(newmsg: M) (cm: CM) (rm: RM) (nw: (cm(P',P,Q,R) NW)) (urand: Rs) (rands: emp) (cipher: CE) 
     (nwCM: NWCM) (nwRM: NWRM) (prins: (P Q Ps)) OCs}
     =>
-    {(newmsg: rm(Q,Q,P,enc(k(P),R,Q))) (cm: CM) (rm: rm(Q,Q,P,enc(k(P),R,Q))) (nw: (rm(Q,Q,P,enc(k(P),R,Q)) cm(P',P,Q,R) NW)) 
-        (urand: Rs) (cipher: (enc(k(P),R,Q) CE)) (nwCM: NWCM) (nwRM: (rm(Q,Q,P,enc(k(P),R,Q)) NWRM)) (prins: (P Q Ps)) OCs} .
+    {(newmsg: rm(Q,Q,P,enc(k(Q),R,Q))) (cm: CM) (rm: rm(Q,Q,P,enc(k(Q),R,Q))) (nw: (rm(Q,Q,P,enc(k(Q),R,Q)) cm(P',P,Q,R) NW)) 
+        (urand: Rs) (cipher: (enc(k(Q),R,Q) CE)) (nwCM: NWCM) (nwRM: (rm(Q,Q,P,enc(k(Q),R,Q)) NWRM)) (prins: (P Q Ps)) OCs} .
 
     rl [fkcm1] :
     {(newmsg: M) (cm: CM) (rm: RM) (nw: NW) (urand: (R Rs)) (cipher: CE) 
@@ -263,40 +263,8 @@ endm
 
 
 eof
-search [1] in IFF : init =>* {(nw: (rm(P1,P2,P3,enc(K,R,P2)) NW)) OCs} such that K =/= k(intr) implies P2 == intr .
+search [1] in IFF : init =>* {(nw: (rm(P1,P2,P3,enc(K,R,P2)) NW)) OCs} such that not(P2 =/= intr and K =/= k(intr)) .
 
-
-
-
-
---- mod* IFF is
----   pr(NETWORK)
----   pr(SET(RAND)*issort Set -> URandsendfm)
----   [Sys]
---- -- an arbitrary initial state
----   op init : -> Sys isconstrendfm
---- -- observations
----   op nw : Sys -> Network
----   op ur : Sys -> URands
---- -- actions
----   op sdcm : Sys Prin Prin Rand -> Sys isconstrendfm
----   op sdrm : Sys Prin Msg -> Sys isconstrendfm
----   --
----   op fkcm1 : Sys Prin Prin Rand -> Sys isconstrendfm
----   op fkrm1 : Sys Prin Prin Cipher -> Sys isconstrendfm
----   op fkrm2 : Sys Prin Prin Rand -> Sys isconstrendfm
-
---- -- CafeOBJ variables
----   var S : Sys
----   vars P1 P2 P3 : Prin
----   vars M1 M2 : Msg
----   var R : Rand
----   var C : Cipher
----   var K : Key
-
---- -- for any initial state
----   eq nw(init) = void .
----   eq ur(init) = empty .
 
 --- -- for action sdcm
 ---   op c-sdcm : Sys Prin Prin Rand -> Bool
