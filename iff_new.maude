@@ -219,8 +219,11 @@ endm
 
 eof
 
-search [1,6] in IFF : init =>* {(nw: (rm(P1,P2,P3,enc(K,R,P2)) NW)) OCs} such that not(not(K == intr) implies not(P2 == intr)) .
-search [1,6] in IFF : init =>* {(cipher: (enc(K,R,intr) CE)) OCs} such that not(K == intr) .
-search [1,6] in IFF : init =>* {(cipher: (enc(K,R,intr) CE)) (urand: Rs) OCs} such that not(R \in Rs) .
+search [1,5] in IFF : init =>* {(nw: (rm(P1,P2,P3,enc(K,R,P2)) NW)) OCs} such that not(not(K == intr) implies not(P2 == intr)) . ***1
+search [1,5] in IFF : init =>* {(cipher: (enc(K,R,intr) CE)) OCs} such that not(K == intr) . ***2
+search [1,5] in IFF : init =>* {(cipher: (C CE)) (urand: Rs) OCs} such that not(r(C) \in Rs) . ***3
 search [1,5] in IFF : init =>* {(nw: (cm(P,P,Q,enc(dP,R,dP)) rm(Q',Q,P,enc(Q,R,Q)) NW)) OCs} 
-such that not(P =/= intr implies rm(Q,Q,P,enc(Q,R,Q)) \in (rm(Q',Q,P,enc(Q,R,Q)) NW)) .
+                    such that not(P =/= intr and Q =/= intr implies rm(Q,Q,P,enc(Q,R,Q)) \in (rm(Q',Q,P,enc(Q,R,Q)) NW)) .
+search [1,5] in IFF : init =>* {(cipher: (enc(K,R,P) CE)) (urand: Rs) OCs} such that not(R \in Rs) .
+search [1,5] in IFF : init =>* {(nw: (rm(Q,Q,P,enc(Q,R,Q)) cm(P',P,Q,enc(dP,R,dP)) NW)) OCs} 
+                    such that not(Q =/= intr implies cm(P,P,Q,enc(dP,R,dP)) \in (cm(P',P,Q,enc(dP,R,dP)) NW)) .
