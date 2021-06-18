@@ -219,7 +219,8 @@ endm
 
 eof
 
-search [1,5] in IFF : init =>* {(nw: (rm(P1,P2,P3,enc(K,R,P2)) NW)) OCs} such that not(not(K == intr) implies not(P2 == intr)) . ***1
+search [1,5] in IFF : init =>* {(nw: (rm(P1,P2,P3,enc(K,R,P2)) NW)) OCs} such that not(K =/= intr implies P2 =/= intr) . ***1
+search [1,5] in IFF : init =>* {(nw: (rm(P1,P2,P3,C) NW)) OCs} such that not(k(C) =/= intr implies p(C) =/= intr) . ***1
 search [1,5] in IFF : init =>* {(cipher: (enc(K,R,intr) CE)) OCs} such that not(K == intr) . ***2
 search [1,5] in IFF : init =>* {(cipher: (C CE)) (urand: Rs) OCs} such that not(r(C) \in Rs) . ***3
 search [1,5] in IFF : init =>* {(nw: (cm(P,P,Q,enc(dP,R,dP)) rm(Q',Q,P,enc(Q,R,Q)) NW)) OCs} 
